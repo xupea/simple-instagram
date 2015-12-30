@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 		client_id: 'b5dfa716548d4801bb638e9b865ff82c',
 		client_secret: '7dc5967d14a34817a13519ba7308cd3d',
 		grant_type: 'authorization_code',
-		redirect_uri: 'http://localhost:1984/authorize/',
+		redirect_uri: 'https://insta-we.herokuapp.com/authorize/',
 		code: code
 	};
 
