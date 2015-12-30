@@ -9,8 +9,8 @@ router.get('/', function (req, res, next) {
 
 	var code = req.query.code;
 	var data = {
-		client_id: 'b5dfa716548d4801bb638e9b865ff82c',
-		client_secret: '7dc5967d14a34817a13519ba7308cd3d',
+		client_id: '422fbb4794654edfa7b02157a43bfde9',
+		client_secret: '84bff0d7e9fb458c820e2135bd24ad71',
 		grant_type: 'authorization_code',
 		redirect_uri: 'https://insta-we.herokuapp.com/authorize/',
 		code: code
