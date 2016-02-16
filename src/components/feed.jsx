@@ -1,6 +1,5 @@
 var React = require('react');
 var $ = require('./../lib/tools.jsx');
-var jQuery = require('jquery')
 var Auth = require('./../lib/auth.jsx');
 var Media = require('./media.jsx');
 var loadStatus = false;
