@@ -7,6 +7,6 @@ router.get('/', function (req, res, next) {
 	// } else {
 	// 	res.render('index', {title: 'Instagram2'});
 	// }
-  res.render('index', {title: 'Instagram2'});
+  res.render('index', {title: 'Instagram'});
 });
 module.exports = router;
