@@ -7,7 +7,6 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "jquery": "~2.2.0",
     "body-parser": "~1.14.2",
     "cookie-parser": "~1.4.1",
     "debug": "~2.2.0",
