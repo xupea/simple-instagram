@@ -10,7 +10,7 @@ var tools = {
 			req.open('GET', url);
 			req.onload = function() {
 				if (req.status == 200) {
-					resolve(req.response);
+					resolve(JSON.parse(req.response));
 				} else {
 					reject(Error(req.statusText));
 				}
@@ -57,7 +57,7 @@ var tools = {
 			: num
 	},
 	jsonp: function(url, callback) {
-		var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+		var callbackName = 'jsonp_callback';
 		window[callbackName] = function(data) {
 			delete window[callbackName];
 			document.body.removeChild(script);

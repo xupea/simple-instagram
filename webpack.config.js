@@ -12,5 +12,10 @@ module.exports = {
     loaders: [
       {test: /\.js[x]?$/, loader: 'babel-loader'}
     ]
-  }
+  },
+  plugins: [
+    new webpack.SourceMapDevToolPlugin(
+        '[name].js.map', null,
+        "[absolute-resource-path]", "[absolute-resource-path]")
+  ]
 };

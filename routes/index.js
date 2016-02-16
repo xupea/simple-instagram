@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 router.get('/', function (req, res, next) {
 	var uid = req.cookies.auth;
-	if(!uid) {
-		res.redirect('/authorize');
-	} else {
-		res.render('index', {title: 'Instagram'});
-	}
+	// if(!uid) {
+	// 	res.redirect('/authorize');
+	// } else {
+	// 	res.render('index', {title: 'Instagram2'});
+	// }
+  res.render('index', {title: 'Instagram2'});
 });
 module.exports = router;

@@ -1,5 +1,6 @@
 var React = require('react');
 var $ = require('./../lib/tools.jsx');
+var jQuery = require('jquery')
 var Auth = require('./../lib/auth.jsx');
 var Media = require('./media.jsx');
 var loadStatus = false;
@@ -12,16 +13,18 @@ var Feed = React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		$.jsonp(Auth.url+'/users/self/feed?access_token='+ Auth.token,this.renderFeed)
+    var that = this
+    $.get('https://raw.githubusercontent.com/xupea/photos/master/hiking/shenzhen_dongxichong_across/feed.json')
+      .then(that.renderFeed)
 	},
-    renderFeed: function(result){
-        if (this.isMounted()) {
-            this.setState({
-                mediaList: this.state.mediaList.concat(result.data),
-                pagination: result.pagination
-            });
-        }
-    },
+  renderFeed: function(result){
+      if (this.isMounted()) {
+          this.setState({
+              mediaList: this.state.mediaList.concat(result.data),
+              pagination: result.pagination
+          });
+      }
+  },
 	componentWillMount: function(){
 		$.loadStart();
 	},
@@ -32,19 +35,22 @@ var Feed = React.createClass({
 		if(loadStatus) return;
 		loadStatus = true;
 		document.querySelector('.loadmore').className = 'loadmore loading';
-		$.jsonp(url,this.moreFeed);
+
+    var that = this
+    $.get(url)
+      .then(that.moreFeed)
 	},
-    moreFeed: function(result){
-        this.setState({
-            mediaList: this.state.mediaList.concat(result.data),
-            pagination: result.pagination
-        });
-        document.querySelector('.loadmore').className = 'loadmore';
-				loadStatus = false;
-    },
-    showMedia: function(id){
-        Media(id);
-    },
+  moreFeed: function(result){
+      this.setState({
+          mediaList: this.state.mediaList.concat(result.data),
+          pagination: result.pagination
+      });
+      document.querySelector('.loadmore').className = 'loadmore';
+			loadStatus = false;
+  },
+  showMedia: function(id){
+      Media(id);
+  },
 	render: function() {
 		var media = this.state.mediaList || [];
         var loadMore = this.loadMore.bind(this,this.state.pagination.next_url);
@@ -67,7 +73,7 @@ var Feed = React.createClass({
 												{item.caption ? <p>{item.caption.text}</p> : ''}
 											</div>
 											<span className={"mediaType " + item.type}  onClick={showMedia}></span>
-											<img className="imgView" onClick={showMedia} src={item.link + 'media/?size=l'}/>
+											<img className="imgView" onClick={showMedia} src={item.link}/>
 										</div>
 										<span className={"like icon-heart " + item.user_has_liked} title={item.likes.count + ' Likes'}>{$.formatK(item.likes.count)}</span>
 										<span className="comment icon-bubble" title={item.comments.count + ' Comments'}>{$.formatK(item.comments.count)}</span>
